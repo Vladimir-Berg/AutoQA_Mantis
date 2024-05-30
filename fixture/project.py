@@ -10,8 +10,7 @@ class ProjectHelper:
         self.app = app
 
     def open_manage_projects(self):
-        wd = self.app.driver
-        wd.get('http://localhost/mantisbt-1.2.20/manage_proj_page.php')
+        self.app.open_home_page()
 
     def create_new_project(self, project):
         wd = self.app.driver
