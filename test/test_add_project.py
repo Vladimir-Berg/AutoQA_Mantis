@@ -10,12 +10,12 @@ def random_project(prefix, maxlen):
 
 def test_add_project(app):
     project = random_project("project", 10)
-    app.session.login("administrator", "root")
-#    old_list = app.project.get_list_projects()
-    old_list = app.soap.get_list_of_projects("administrator", "root")
+    username = "administrator"
+    password = "root"
+    app.session.login(username, password)
+    old_list = app.soap.get_list_of_projects(username, password)
     project = Project(project)
     app.project.create_new_project(project)
-#    new_list = app.project.get_list_projects()
-    new_list = app.soap.get_list_of_projects("administrator", "root")
+    new_list = app.soap.get_list_of_projects(username, password)
     old_list.append(project)
     assert sorted(old_list, key=Project.id_or_max) == sorted(new_list, key=Project.id_or_max)

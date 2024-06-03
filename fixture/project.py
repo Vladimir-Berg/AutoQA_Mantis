@@ -26,15 +26,14 @@ class ProjectHelper:
     def delete_project(self, project_id):
         wd = self.app.driver
         self.open_manage_projects()
-        print(wd.find_element(By.CSS_SELECTOR, 'body > table:nth-child(6) > tbody').find_elements(By.CSS_SELECTOR, "tbody > tr")[2:])
         for item in (wd.find_element(By.CSS_SELECTOR, 'body > table:nth-child(6) > tbody').
                         find_elements(By.CSS_SELECTOR, "tbody > tr"))[2:]:
             href = item.find_element(By.CSS_SELECTOR, "td:nth-child(1) > a").get_attribute('href')
-            print(href)
-            if href.split('=')[1] == project_id:
+            if int(href.split('=')[1]) == project_id:
                 item.find_element(By.CSS_SELECTOR, "td:nth-child(1) > a").click()
                 wd.find_element(By.CSS_SELECTOR, "input[value='Delete Project']").click()
                 wd.find_element(By.CSS_SELECTOR, "input[value='Delete Project']").click()
+                break
 
     def get_list_projects(self):
         wd = self.app.driver
