@@ -10,7 +10,8 @@ class ProjectHelper:
         self.app = app
 
     def open_manage_projects(self):
-        self.app.open_home_page()
+        wd = self.app.driver
+        wd.get(self.app.base_url + "/manage_proj_page.php")
 
     def create_new_project(self, project):
         wd = self.app.driver
